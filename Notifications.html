@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Swastik Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .notif-list {
+            margin-top: 10px;
+        }
+
+        .notif-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 15px;
+            position: relative;
+            box-shadow: var(--shadow);
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .notif-item.unread {
+            border-left: 4px solid var(--primary-teal);
+            background: #f0fbf9;
+        }
+
+        .notif-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .notif-content h5 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .notif-content p {
+            margin: 0;
+            font-size: 12px;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        .notif-time {
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .unread-dot {
+            width: 8px;
+            height: 8px;
+            background: #e74c3c;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .clear-btn {
+            float: right;
+            font-size: 12px;
+            color: var(--primary-teal);
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <div class="content">
+            <div class="header" style="justify-content: flex-start; gap: 15px; margin-bottom: 10px;">
+                <i class="fa fa-arrow-left" onclick="location.href='index.html'" style="cursor: pointer;"></i>
+                <h3 style="margin: 0;">Notifications</h3>
+            </div>
+
+            <span class="clear-btn" onclick="markAllRead()">Mark all as read</span>
+            <div style="clear: both;"></div>
+
+            <div class="notif-list" id="notifList">
+                <div class="notif-item unread">
+                    <div class="notif-icon" style="background: #e3f2fd; color: #1565c0;">
+                        <i class="fa fa-calendar-check"></i>
+                    </div>
+                    <div class="notif-content">
+                        <h5>Appointment Reminder</h5>
+                        <p>Your consultation with <b>Dr. Shalih</b> is scheduled for today at 04:30 PM.</p>
+                        <span class="notif-time">20 mins ago</span>
+                    </div>
+                    <div class="unread-dot"></div>
+                </div>
+
+                <div class="notif-item unread">
+                    <div class="notif-icon" style="background: #fff3e0; color: #e65100;">
+                        <i class="fa fa-pills"></i>
+                    </div>
+                    <div class="notif-content">
+                        <h5>Medicine Time</h5>
+                        <p>Time to take your afternoon dosage (Post-meal medicines).</p>
+                        <span class="notif-time">1 hour ago</span>
+                    </div>
+                    <div class="unread-dot"></div>
+                </div>
+
+                <div class="notif-item">
+                    <div class="notif-icon" style="background: #e8f5e9; color: #2e7d32;">
+                        <i class="fa fa-file-medical"></i>
+                    </div>
+                    <div class="notif-content">
+                        <h5>Report Uploaded</h5>
+                        <p>Your Blood Test results from March 12 are now available in Records.</p>
+                        <span class="notif-time">Yesterday</span>
+                    </div>
+                </div>
+
+                <div class="notif-item">
+                    <div class="notif-icon" style="background: #f3e5f5; color: #7b1fa2;">
+                        <i class="fa fa-user-md"></i>
+                    </div>
+                    <div class="notif-content">
+                        <h5>Doctor's Advice</h5>
+                        <p>Dr. Bantiranir updated your recovery plan. Please check 'My Journey'.</p>
+                        <span class="notif-time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <a onclick="location.href='index.html'" class="nav-item"><i class="fa fa-home"></i></a>
+            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
+            <a onclick="location.href='Notifications.html'" class="nav-item active"><i class="fa fa-bell"></i></a>
+            <a onclick="location.href='Profile-Settings.html'" class="nav-item"><i class="fa fa-user-cog"></i></a>
+        </nav>
+    </div>
+
+    <script>
+        function markAllRead() {
+            const unreadItems = document.querySelectorAll('.notif-item.unread');
+            const dots = document.querySelectorAll('.unread-dot');
+            
+            unreadItems.forEach(item => item.classList.remove('unread'));
+            dots.forEach(dot => dot.style.display = 'none');
+            
+            alert("All notifications marked as read!");
+        }
+    </script>
+</body>
+</html>
