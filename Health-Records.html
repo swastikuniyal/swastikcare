@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Records - Swastik Care</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .record-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .record-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .file-icon {
+            width: 45px;
+            height: 45px;
+            background: #fff3e0;
+            color: #e65100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            cursor: pointer;
+            background: #fff;
+        }
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: #f0f7f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="container">
+            <div class="top-bar">
+                <button onclick="location.href='index.html'" class="back-btn">← Back</button>
+                <h3 style="display: inline-block; margin-left: 10px;">My Health Records</h3>
+            </div>
+
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <i class="fa fa-cloud-upload-alt" style="font-size: 30px; color: var(--primary);"></i>
+                <p style="margin-top: 10px; font-weight: 600;">Upload New Document</p>
+                <small>PDF, PNG, or JPG (Max 5MB)</small>
+                <input type="file" id="fileInput" style="display: none;">
+            </div>
+
+            <div class="records-list">
+                <div class="record-card">
+                    <div class="record-info">
+                        <div class="file-icon"><i class="fa fa-file-medical"></i></div>
+                        <div>
+                            <strong style="font-size: 14px;">Blood Test Report</strong>
+                            <p style="font-size: 11px; color: #888;">March 12, 2026 • 1.2 MB</p>
+                        </div>
+                    </div>
+                    <i class="fa fa-download" style="color: #666; cursor: pointer;"></i>
+                </div>
+
+                <div class="record-card">
+                    <div class="record-info">
+                        <div class="file-icon" style="background: #e3f2fd; color: #1565c0;"><i class="fa fa-prescription"></i></div>
+                        <div>
+                            <strong style="font-size: 14px;">Dr. Bantiranir Prescription</strong>
+                            <p style="font-size: 11px; color: #888;">Feb 28, 2026 • 450 KB</p>
+                        </div>
+                    </div>
+                    <i class="fa fa-download" style="color: #666; cursor: pointer;"></i>
+                </div>
+
+                <div class="record-card">
+                    <div class="record-info">
+                        <div class="file-icon" style="background: #e8f5e9; color: #2e7d32;"><i class="fa fa-x-ray"></i></div>
+                        <div>
+                            <strong style="font-size: 14px;">Chest X-Ray Scan</strong>
+                            <p style="font-size: 11px; color: #888;">Jan 15, 2026 • 4.8 MB</p>
+                        </div>
+                    </div>
+                    <i class="fa fa-download" style="color: #666; cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <i class="fa fa-home" onclick="location.href='index.html'"></i>
+            <i class="fa fa-calendar" onclick="location.href='Appointment-Booking.html'"></i>
+            <i class="fa fa-user" onclick="location.href='Profile.html'"></i>
+        </nav>
+    </div>
+
+    <script>
+        // Simple handler for upload simulation
+        document.getElementById('fileInput').onchange = function() {
+            if(this.files[0]) {
+                alert("File '" + this.files[0].name + "' selected for upload.");
+            }
+        };
+    </script>
+</body>
+</html>
