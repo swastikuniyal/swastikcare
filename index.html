@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Swastik Care</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="container">
+            <div class="header">
+                <h3>Hello, <span id="user">Patient</span></h3>
+                <div class="avatar"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="grid">
+                <div class="card blue" onclick="location.href='Appointment-Booking.html'"><i class="fa fa-calendar-check"></i>Book Appointment</div>
+                <div class="card orange" onclick="location.href='Health-Records.html'"><i class="fa fa-folder-open"></i>Health Records</div>
+                <div class="card green" onclick="location.href='Vitals.html'"><i class="fa fa-heartbeat"></i>Vitals Summary</div>
+                <div class="card purple" onclick="location.href='Journey.html'"><i class="fa fa-walking"></i>My Journey</div>
+            </div>
+            <div class="activity">
+                <h4>Recent Activity</h4>
+                <p>No upcoming appointments.</p>
+            </div>
+        </div>
+        <nav class="bottom-nav">
+            <i class="fa fa-home active"></i>
+            <i class="fa fa-calendar" onclick="location.href='Appointment-Booking.html'"></i>
+            <i class="fa fa-user" onclick="location.href='Profile.html'"></i>
+        </nav>
+    </div>
+    <script>document.getElementById('user').innerText = localStorage.getItem("patientName") || "Patient";</script>
+</body>
+</html>
