@@ -2,26 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Swastik Care</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific login screen overrides */
+        .login-box {
+            margin-top: 50px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: var(--primary-teal);
+        }
+
+        .input-field {
+            padding-left: 40px !important;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
+
     <div class="mobile-frame">
         <div class="container">
-            <div class="logo-area">🏥 <h2>Swastik Care</h2></div>
-            <h3>Sign In as Patient</h3>
-            <div class="input-group">
-                <label>Phone Number/Username</label>
-                <input type="text" id="userInput" class="input-field" placeholder="Enter Username">
-                <label>OTP/Password</label>
-                <input type="password" id="passInput" class="input-field" placeholder="Enter Password">
+            <div class="logo-area" style="text-align: center; margin-top: 60px;">
+                <div style="font-size: 60px; color: var(--primary-teal); margin-bottom: 10px;">🏥</div>
+                <h2 style="color: var(--secondary-blue); font-size: 28px;">Swastik Care</h2>
+                <p style="color: #666; font-size: 14px;">Your Health, Our Priority</p>
             </div>
-            <button class="btn-main" onclick="validate()">Sign In</button>
-            <p id="error" style="color:red; display:none; text-align:center; margin-top:10px;">Invalid Credentials!</p>
+
+            <div class="login-box">
+                <h3 style="margin-bottom: 25px; color: #333;">Sign In as Patient</h3>
+
+                <div class="input-group">
+                    <label class="input-label">Phone Number / Username</label>
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="userInput" class="input-field" placeholder="Enter Username">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Enter OTP / Password</label>
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="passInput" class="input-field" placeholder="Enter Password">
+                </div>
+
+                <p id="errorMsg" style="color: #e74c3c; font-size: 13px; text-align: center; display: none; margin-bottom: 15px;">
+                    <i class="fa fa-exclamation-circle"></i> Invalid Username or Password!
+                </p>
+
+                <button class="btn-main" onclick="validateLogin()">Sign In</button>
+
+                <div style="text-align: center; margin-top: 25px;">
+                    <a href="Forgot-Password.html" style="color: var(--text-gray); font-size: 13px; text-decoration: none;">Forgot Password?</a>
+                    <hr style="margin: 20px auto; width: 50%; border: 0; border-top: 1px solid #ddd;">
+                    <p style="font-size: 14px; color: #666;">
+                        New Patient? <a href="Signup.html" style="color: var(--primary-teal); font-weight: bold; text-decoration: none;">Create Account</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+
     <script>
+        // Credentials validation logic
         const validUsers = {
             "manish": "pandey", 
             "jayant": "raj123", 
@@ -29,16 +86,33 @@
             "hmp": "hmp", 
             "9876543210": "bihar2026"
         };
-        function validate() {
-            const u = document.getElementById('userInput').value;
-            const p = document.getElementById('passInput').value;
-            if(validUsers[u] === p) {
+
+        function validateLogin() {
+            const u = document.getElementById('userInput').value.trim();
+            const p = document.getElementById('passInput').value.trim();
+            const error = document.getElementById('errorMsg');
+
+            // Logic to check against our validUsers object
+            if (validUsers[u] && validUsers[u] === p) {
+                // Success: Save to localStorage for the Dashboard to use
                 localStorage.setItem("patientName", u);
+                // Redirect to main index
                 window.location.href = "index.html";
             } else {
-                document.getElementById('error').style.display = "block";
+                // Failure: Show error
+                error.style.display = "block";
+                // Simple shake effect (optional)
+                document.querySelector('.login-box').style.animation = "none";
+                setTimeout(() => { document.querySelector('.login-box').style.animation = "slideUp 0.3s"; }, 10);
             }
         }
+
+        // Allow 'Enter' key to login
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                validateLogin();
+            }
+        });
     </script>
 </body>
 </html>
