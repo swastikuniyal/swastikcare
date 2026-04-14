@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitals Summary - Swastik Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .vitals-input-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: #f8fafb;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #edf2f7;
+        }
+
+        .stat-box i { font-size: 24px; margin-bottom: 8px; }
+        .stat-box h2 { margin: 5px 0; color: var(--secondary-blue); font-size: 20px; }
+        .stat-box p { font-size: 12px; color: var(--text-gray); margin: 0; }
+
+        .history-list { margin-top: 20px; }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .btn-add {
+            background: var(--primary-teal);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <div class="content">
+            <div class="header" style="justify-content: flex-start; gap: 15px;">
+                <i class="fa fa-arrow-left" onclick="location.href='index.html'" style="cursor: pointer;"></i>
+                <h3 style="margin: 0;">Health Vitals</h3>
+            </div>
+
+            <div class="vitals-input-card">
+                <p style="font-weight: 600; color: var(--text-dark);">Latest Readings</p>
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <i class="fa fa-heartbeat" style="color: #e74c3c;"></i>
+                        <h2 id="currentHeartRate">72</h2>
+                        <p>bpm</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa fa-tint" style="color: #3498db;"></i>
+                        <h2 id="currentBP">120/80</h2>
+                        <p>mmHg</p>
+                    </div>
+                </div>
+                <button class="btn-add" onclick="addNewReading()">+ Update Vitals</button>
+            </div>
+
+            <div class="history-list">
+                <h4 style="margin-bottom: 15px; color: var(--secondary-blue);">Vitals History</h4>
+                
+                <div class="history-item">
+                    <div>
+                        <strong style="display: block; font-size: 14px;">14 April, 2026</strong>
+                        <small style="color: #888;">Morning • 09:00 AM</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="color: #e74c3c; font-weight: 600; font-size: 14px;">72 bpm</span><br>
+                        <span style="color: #3498db; font-weight: 600; font-size: 14px;">120/80</span>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div>
+                        <strong style="display: block; font-size: 14px;">13 April, 2026</strong>
+                        <small style="color: #888;">Evening • 07:45 PM</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="color: #e74c3c; font-weight: 600; font-size: 14px;">75 bpm</span><br>
+                        <span style="color: #3498db; font-weight: 600; font-size: 14px;">118/79</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <a onclick="location.href='index.html'" class="nav-item"><i class="fa fa-home"></i></a>
+            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
+            <a onclick="location.href='Notifications.html'" class="nav-item"><i class="fa fa-bell"></i></a>
+            <a onclick="location.href='Profile-Settings.html'" class="nav-item"><i class="fa fa-user-cog"></i></a>
+        </nav>
+    </div>
+
+    <script>
+        function addNewReading() {
+            const hr = prompt("Enter Heart Rate (bpm):", "72");
+            const bp = prompt("Enter Blood Pressure (mmHg):", "120/80");
+            
+            if (hr && bp) {
+                document.getElementById('currentHeartRate').innerText = hr;
+                document.getElementById('currentBP').innerText = bp;
+                alert("Vitals updated successfully!");
+            }
+        }
+    </script>
+</body>
+</html>
