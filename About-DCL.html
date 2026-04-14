@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Project - Swastik Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dcl-header {
+            background: linear-gradient(135deg, #2d7a71, #1a237e);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .process-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-teal);
+        }
+
+        .process-card h4 {
+            color: var(--secondary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .process-card p {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .tag {
+            background: #e6f4f1;
+            color: var(--primary-teal);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <div class="content" style="padding: 0;">
+            <div class="dcl-header">
+                <button onclick="location.href='index.html'" class="back-btn" style="color: white; float: left; margin: 0;">←</button>
+                <h3 style="margin-top: 10px;">Project Design Process</h3>
+                <p style="font-size: 12px; opacity: 0.8;">Course Code: CSCR1504 (DCL)</p>
+            </div>
+
+            <div style="padding: 20px;">
+                <span class="tag">Problem Statement</span>
+                <div class="process-card">
+                    <h4><i class="fa fa-exclamation-triangle"></i> The Gap</h4>
+                    <p>Post-surgery recovery is often neglected due to poor communication between patients and doctors. Many patients lack a clear roadmap for their recovery journey.</p>
+                </div>
+
+                <span class="tag">Proposed Solution</span>
+                <div class="process-card">
+                    <h4><i class="fa fa-lightbulb"></i> Swastik Care</h4>
+                    <p>A digital ecosystem that provides a <b>'Move On Stronger'</b> roadmap. It integrates vitals tracking, instant doctor consultations, and recovery milestones in one mobile portal.</p>
+                </div>
+
+                <span class="tag">Design Journey</span>
+                <div class="process-card">
+                    <h4><i class="fa fa-pencil-ruler"></i> Creativity Lab</h4>
+                    <p>Designed at Pandey Traders Lab, focusing on accessibility for rural and urban patients. The UI is built using a mobile-first approach for ease of use by all age groups.</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px; padding: 20px;">
+                    <p style="font-size: 12px; color: #aaa;">Created with ❤️ by Manish Pandey</p>
+                    <p style="font-size: 11px; color: #ccc;">Pandey Traders | Swastik Care © 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <a onclick="location.href='index.html'" class="nav-item"><i class="fa fa-home"></i></a>
+            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
+            <a onclick="location.href='Notifications.html'" class="nav-item"><i class="fa fa-bell"></i></a>
+            <a onclick="location.href='Profile-Settings.html'" class="nav-item"><i class="fa fa-user-cog"></i></a>
+        </nav>
+    </div>
+
+</body>
+</html>
