@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Swastik Care</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="container">
+            <div class="logo-area">🏥 <h2>Swastik Care</h2></div>
+            <h3>Sign In as Patient</h3>
+            <div class="input-group">
+                <label>Phone Number/Username</label>
+                <input type="text" id="userInput" class="input-field" placeholder="Enter Username">
+                <label>OTP/Password</label>
+                <input type="password" id="passInput" class="input-field" placeholder="Enter Password">
+            </div>
+            <button class="btn-main" onclick="validate()">Sign In</button>
+            <p id="error" style="color:red; display:none; text-align:center; margin-top:10px;">Invalid Credentials!</p>
+        </div>
+    </div>
+    <script>
+        const validUsers = {
+            "manish": "pandey", 
+            "jayant": "raj123", 
+            "farmer01": "khet123", 
+            "hmp": "hmp", 
+            "9876543210": "bihar2026"
+        };
+        function validate() {
+            const u = document.getElementById('userInput').value;
+            const p = document.getElementById('passInput').value;
+            if(validUsers[u] === p) {
+                localStorage.setItem("patientName", u);
+                window.location.href = "index.html";
+            } else {
+                document.getElementById('error').style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
