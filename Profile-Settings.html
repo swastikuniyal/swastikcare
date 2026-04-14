@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - Swastik Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-header {
+            text-align: center;
+            padding: 30px 0;
+            background: white;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .avatar-large {
+            width: 100px;
+            height: 100px;
+            background: #edf2f7;
+            border-radius: 30px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--primary-teal);
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .settings-group {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .setting-item:last-child { border-bottom: none; }
+        .setting-item:active { background: #f8fafc; }
+
+        .setting-item i {
+            width: 35px;
+            font-size: 18px;
+            color: var(--primary-teal);
+        }
+
+        .setting-item span {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .setting-item .fa-chevron-right {
+            color: #cbd5e0;
+            font-size: 12px;
+        }
+
+        .logout-btn {
+            color: #e74c3c !important;
+        }
+
+        .logout-btn i {
+            color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <div class="content" style="padding: 0;">
+            <div class="profile-header">
+                <div class="avatar-large">
+                    <i class="fa fa-user"></i>
+                </div>
+                <h2 id="userName" style="text-transform: capitalize; color: var(--secondary-blue);">Patient Name</h2>
+                <p style="font-size: 13px; color: var(--text-gray);">Patient ID: #SC-2026-001</p>
+            </div>
+
+            <div style="padding: 0 20px;">
+                <p style="font-size: 12px; font-weight: bold; color: var(--text-gray); margin-bottom: 10px; padding-left: 5px;">ACCOUNT SETTINGS</p>
+                <div class="settings-group">
+                    <div class="setting-item">
+                        <i class="fa fa-user-circle"></i>
+                        <span>Edit Profile</span>
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                    <div class="setting-item" onclick="location.href='Health-Records.html'">
+                        <i class="fa fa-file-medical"></i>
+                        <span>My Documents</span>
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                    <div class="setting-item" onclick="location.href='Invoice-Gen.html'">
+                        <i class="fa fa-file-invoice-dollar"></i>
+                        <span>Billing & Payments</span>
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <p style="font-size: 12px; font-weight: bold; color: var(--text-gray); margin-bottom: 10px; padding-left: 5px;">APP SETTINGS</p>
+                <div class="settings-group">
+                    <div class="setting-item" onclick="location.href='Notifications.html'">
+                        <i class="fa fa-bell"></i>
+                        <span>Notification Settings</span>
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                    <div class="setting-item" onclick="location.href='Support.html'">
+                        <i class="fa fa-question-circle"></i>
+                        <span>Help & Support</span>
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                    <div class="setting-item logout-btn" onclick="handleLogout()">
+                        <i class="fa fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <a onclick="location.href='index.html'" class="nav-item"><i class="fa fa-home"></i></a>
+            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
+            <a onclick="location.href='Notifications.html'" class="nav-item"><i class="fa fa-bell"></i></a>
+            <a onclick="location.href='Profile-Settings.html'" class="nav-item active"><i class="fa fa-user-cog"></i></a>
+        </nav>
+    </div>
+
+    <script>
+        // Set User Name from LocalStorage
+        window.onload = function() {
+            const name = localStorage.getItem("patientName");
+            if (name) {
+                document.getElementById("userName").innerText = name;
+            }
+        }
+
+        // Logout Function
+        function handleLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem("patientName");
+                window.location.href = "Login.html";
+            }
+        }
+    </script>
+</body>
+</html>
