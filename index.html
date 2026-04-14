@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastik Care | Full Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-teal: #2d7a71;
+            --secondary-blue: #1a237e;
+            --bg-light: #f8faf9;
+            --white: #ffffff;
+            --text-dark: #333;
+            --text-gray: #666;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Phone Frame */
+        .mobile-container {
+            width: 375px;
+            height: 750px;
+            background: var(--bg-light);
+            border-radius: 40px;
+            border: 8px solid #444;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .screen {
+            display: none;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            overflow-y: auto;
+            padding-bottom: 80px; /* Space for nav */
+        }
+
+        .screen.active { display: block; }
+
+        /* --- PAGE 1: SPLASH --- */
+        #splash {
+            background: linear-gradient(180deg, var(--primary-teal), #1e4d47);
+            display: flex; /* Override hidden temporarily */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-bottom: 0;
+        }
+
+        .logo-icon {
+            font-size: 60px;
+            background: white;
+            color: var(--primary-teal);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* --- PAGE 2: LOGIN --- */
+        .login-header { margin: 60px 0 30px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 14px; margin-bottom: 8px; color: var(--text-gray); }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .otp-row { display: flex; gap: 10px; margin-bottom: 30px; }
+        .btn-otp { background: var(--secondary-blue); color: white; border: none; padding: 0 15px; border-radius: 8px; white-space: nowrap; }
+
+        .btn-main {
+            width: 100%;
+            padding: 15px;
+            background: var(--secondary-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        /* --- PAGE 3: DASHBOARD --- */
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .user-info h3 { font-size: 20px; color: var(--text-dark); }
+        .avatar { width: 45px; height: 45px; background: #ddd; border-radius: 50%; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .menu-card {
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .blue { background: #E3F2FD; color: #1565C0; }
+        .orange { background: #FFF3E0; color: #E65100; }
+        .green { background: #E8F5E9; color: #2E7D32; }
+        .purple { background: #F3E5F5; color: #7B1FA2; }
+
+        .vitals-summary {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* --- NAVIGATION --- */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            background: white;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #eee;
+            z-index: 100;
+        }
+
+        .nav-item { text-align: center; color: #aaa; cursor: pointer; font-size: 20px; }
+        .nav-item.active { color: var(--primary-teal); }
+
+        /* --- GENERAL UI --- */
+        .top-bar { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-top: 10px; }
+        .back-btn { cursor: pointer; font-size: 20px; }
+        .list-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Chat Styles */
+        .chat-container { height: 450px; display: flex; flex-direction: column; gap: 10px; }
+        .bubble { padding: 12px; border-radius: 15px; max-width: 80%; font-size: 14px; }
+        .dr-msg { background: #eee; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .my-msg { background: var(--primary-teal); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="mobile-container">
+    
+    <section id="splash" class="screen active">
+        <div class="logo-icon">✚</div>
+        <h1>Swastik Care</h1>
+        <p>Your Health, Our Priority</p>
+    </section>
+
+    <section id="login" class="screen">
+        <div class="login-header">
+            <h2>Welcome</h2>
+            <p>Please log in to continue</p>
+        </div>
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="text" class="input-field" placeholder="+91 00000 00000">
+        </div>
+        <div class="input-group">
+            <label>OTP</label>
+            <div class="otp-row">
+                <input type="text" class="input-field" placeholder="1234">
+                <button class="btn-otp">Get OTP</button>
+            </div>
+        </div>
+        <button class="btn-main" onclick="showPage('dashboard')">Sign In as Patient</button>
+        <button class="btn-main" style="background:#444">Sign In as Doctor</button>
+    </section>
+
+    <section id="dashboard" class="screen">
+        <div class="header-row">
+            <div class="user-info">
+                <p>Hello,</p>
+                <h3>John Doe</h3>
+            </div>
+            <div class="avatar" onclick="showPage('profile')"></div>
+        </div>
+        <div class="grid-container">
+            <div class="menu-card blue" onclick="showPage('booking')">
+                <i class="fa fa-calendar-alt"></i><br><br>Book Appointment
+            </div>
+            <div class="menu-card orange" onclick="showPage('records')">
+                <i class="fa fa-folder"></i><br><br>My Health Records
+            </div>
+            <div class="menu-card green" onclick="showPage('chat')">
+                <i class="fa fa-comment-medical"></i><br><br>Talk to Doctor
+            </div>
+            <div class="menu-card purple" onclick="showPage('journey')">
+                <i class="fa fa-running"></i><br><br>MoveOn Journey
+            </div>
+        </div>
+        <div class="vitals-summary" onclick="showPage('vitals')">
+            <h4 style="margin-bottom:10px">Health Vitals Summary</h4>
+            <div style="display:flex; justify-content:space-between; color:var(--text-gray)">
+                <span>❤️ 72 bpm</span>
+                <span>🩸 120/80</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="screen">
+        <div class="top-bar">
+            <i class="fa fa-arrow-left back-btn" onclick="showPage('dashboard')"></i>
+            <h3>Select Doctor</h3>
+        </div>
+        <div class="list-item" onclick="showPage('dr_detail')">
+            <div class="avatar"></div>
+            <div>
+                <strong>Dr. Bantiranir</strong>
+                <p style="font-size:12px; color:gray">Cardiologist</p>
+            </div>
+        </div>
+        <div class="list-item">
+            <div class="avatar"></div>
+            <div>
+                <strong>Dr. Shalih</strong>
+                <p style="font-size:12px; color:gray">Physiotherapist</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="dr_detail" class="screen">
+        <div class="top-bar">
+            <i class="fa fa-arrow-left back-btn" onclick="showPage('booking')"></i>
+            <h3>Doctor Profile</h3>
+        </div>
+        <div style="text-align:center; padding:20px;">
+            <div class="avatar" style="width:80px; height:80px; margin: 0 auto 15px;"></div>
+            <h4>Dr. Bantiranir</h4>
+            <p>15 Years Experience</p>
+        </div>
+        <p style="font-size:14px; margin-bottom:20px;">Specialist in non-invasive cardiology and heart health management.</p>
+        <button class="btn-main" onclick="alert('Booking Confirmed!')">Confirm Slot: 10:00 AM</button>
+    </section>
+
+    <section id="records" class="screen">
+        <div class="top-bar">
+            <i class="fa fa-arrow-left back-btn" onclick="showPage('dashboard')"></i>
+            <h3>My Records</h3>
+        </div>
+        <div class="list-item"><i class="fa fa-file-pdf" style="color:red"></i> Blood Test Results</div>
+        <div class="list-item"><i class="fa fa-file-pdf" style="color:red"></i> X-Ray Scan</div>
+        <button class="btn-main" style="background:var(--primary-teal); margin-top:20px;">+ Upload Document</button>
+    </section>
+
+    <section id="chat" class="screen">
+        <div class="top-bar">
+            <i class="fa fa-arrow-left back-btn" onclick="showPage('dashboard')"></i>
+            <h3>Chat: Dr. Shalih</h3>
+        </div>
+        <div class="chat-container">
+            <div class="bubble dr-msg">Hello John, how is your knee pain today?</div>
+            <div class="bubble my-msg">It's getting better, but still hurts when I climb stairs.</div>
+            <div class="bubble dr-msg">I'll update your exercises in the journey tab.</div>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <input type="text" class="input-field" placeholder="Type message...">
+            <button class="btn-otp"><i class="fa fa-paper-plane"></i></button>
+        </div>
+    </section>
+
+    <section id="profile" class="screen">
+        <div class="top-bar">
+            <i class="fa fa-arrow-left back-btn" onclick="showPage('dashboard')"></i>
+            <h3>Profile</h3>
+        </div>
+        <div style="text-align:center; padding:20px;">
+            <div class="avatar" style="width:80px; height:80px; margin: 0 auto 15px;"></div>
+            <h4>John Doe</h4>
+            <p>Patient ID: SC-9920</p>
+        </div>
+        <div class="list-item"><i class="fa fa-user-edit"></i> Edit Personal Info</div>
+        <div class="list-item"><i class="fa fa-bell"></i> Notifications</div>
+        <div class="list-item" onclick="showPage('login')" style="color:red"><i class="fa fa-sign-out-alt"></i> Logout</div>
+    </section>
+
+    <section id="vitals" class="screen">
+        <div class="top-bar"><i class="fa fa-arrow-left back-btn" onclick="showPage('dashboard')"></i><h3>Vitals</h3></div>
+        <div class="vitals-summary">Graph Loading...</div>
+    </section>
+
+    <section id="journey" class="screen">
+        <div class="top-bar"><i class="fa fa-arrow-left back-btn" onclick="showPage('dashboard')"></i><h3>My Journey</h3></div>
+        <div class="list-item">Step 1: Recovery Complete</div>
+        <div class="list-item">Step 2: Strength Training</div>
+    </section>
+
+    <nav class="bottom-nav" id="mainNav">
+        <div class="nav-item active" onclick="showPage('dashboard')"><i class="fa fa-home"></i></div>
+        <div class="nav-item" onclick="showPage('booking')"><i class="fa fa-calendar"></i></div>
+        <div class="nav-item" onclick="showPage('chat')"><i class="fa fa-comment"></i></div>
+        <div class="nav-item" onclick="showPage('profile')"><i class="fa fa-user"></i></div>
+    </nav>
+</div>
+
+<script>
+    function showPage(pageId) {
+        // Hide all screens
+        const screens = document.querySelectorAll('.screen');
+        screens.forEach(s => s.classList.remove('active'));
+
+        // Show requested screen
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+
+        // Handle Bottom Nav visibility
+        const nav = document.getElementById('mainNav');
+        if (pageId === 'splash' || pageId === 'login') {
+            nav.style.display = 'none';
+        } else {
+            nav.style.display = 'flex';
+        }
+
+        // Update active nav icon
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => item.classList.remove('active'));
+        // (Simplified logic for icon highlighting)
+    }
+
+    // Auto-transition from Splash to Login
+    window.onload = () => {
+        setTimeout(() => {
+            showPage('login');
+        }, 2000);
+    };
+</script>
+
+</body>
+</html>
