@@ -3,270 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swastik Care | Patient Dashboard</title>
+    <title>Swastik Care | Home Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-teal: #2d7a71;
-            --secondary-blue: #1a237e;
-            --bg-light: #f4f7f6;
-            --white: #ffffff;
-            --text-dark: #333;
-            --text-gray: #777;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        /* Basic Reset */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        body {
-            background-color: #121212; /* Dark background to make the phone pop */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Mobile Device Frame */
-        .mobile-frame {
-            width: 375px;
-            height: 812px;
-            background: var(--bg-light);
-            border-radius: 45px;
-            border: 12px solid #333;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-        }
-
-        /* Scrollable Content Area */
-        .content {
-            padding: 25px;
-            height: 100%;
-            overflow-y: auto;
-            padding-bottom: 90px;
-        }
-
-        /* Dashboard Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-top: 15px;
-        }
-
-        .welcome-text p { color: var(--text-gray); font-size: 14px; margin: 0; }
-        .welcome-text h2 { color: var(--secondary-blue); font-size: 24px; text-transform: capitalize; }
-        
-        .profile-img {
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: var(--shadow);
-            color: var(--primary-teal);
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        /* Menu Grid */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .menu-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .menu-card:active { transform: scale(0.95); }
-        .menu-card i { font-size: 28px; margin-bottom: 12px; display: block; }
-        .menu-card span { font-size: 13px; font-weight: 600; color: var(--text-dark); }
-
-        /* Icon Colors */
-        .blue { color: #1e88e5; }
-        .orange { color: #fb8c00; }
-        .green { color: #43a047; }
-        .purple { color: #8e24aa; }
-
-        /* Vitals Summary Card */
-        .vitals-box {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .vitals-box h4 { margin-bottom: 15px; font-size: 16px; color: var(--text-dark); }
-        .vitals-row { display: flex; justify-content: space-between; }
-        .vital-stat { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-gray); }
-        .vital-stat b { color: var(--text-dark); }
-
-        /* Journey Banner */
-        .journey-banner {
-            background: linear-gradient(135deg, var(--primary-teal), #1a237e);
-            color: white;
-            padding: 20px;
-            border-radius: 22px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .journey-banner h4 { font-size: 18px; margin-bottom: 8px; }
-        .journey-banner p { font-size: 13px; opacity: 0.9; margin-bottom: 15px; }
-        .journey-btn {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Bottom Sticky Navigation */
-        .navbar {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 75px;
-            background: var(--white);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-top: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-
-        .nav-item {
-            color: #bdc3c7;
-            text-decoration: none;
-            font-size: 22px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-item.active { color: var(--primary-teal); }
-
-        /* Small Notch for Realism */
-        .notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 25px;
-            background: #333;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            z-index: 10;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="mobile-frame">
-        <div class="notch"></div>
-        
-        <div class="content">
-            <header class="header">
-                <div class="welcome-text">
-                    <p>Good Morning,</p>
-                    <h2 id="patientName">Manish</h2>
+        <div class="container">
+            <div class="header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-top: 10px;">
+                <div class="user-info">
+                    <p style="color: #888; font-size: 14px; margin: 0;">Hello,</p>
+                    <h3 id="patientNameDisplay" style="margin: 0; color: var(--secondary-blue); text-transform: capitalize;">Patient</h3>
                 </div>
-                <div class="profile-img" onclick="location.href='Profile-Settings.html'">
-                    <i class="fa fa-user-circle"></i>
-                </div>
-            </header>
-
-            <div class="menu-grid">
-                <div class="menu-card" onclick="location.href='Appointment-Booking.html'">
-                    <i class="fa fa-calendar-alt blue"></i>
-                    <span>Appointment</span>
-                </div>
-                <div class="menu-card" onclick="location.href='Health-Records.html'">
-                    <i class="fa fa-folder-open orange"></i>
-                    <span>Records</span>
-                </div>
-                <div class="menu-card" onclick="location.href='Talk-To-Doctor.html'">
-                    <i class="fa fa-comment-medical green"></i>
-                    <span>Consult Dr.</span>
-                </div>
-                <div class="menu-card" onclick="location.href='My-Journey.html'">
-                    <i class="fa fa-map-signs purple"></i>
-                    <span>My Journey</span>
+                <div class="profile-pic" onclick="location.href='Profile-Settings.html'" style="width: 45px; height: 45px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <i class="fa fa-user" style="color: #666;"></i>
                 </div>
             </div>
 
-            <div class="vitals-box" onclick="location.href='Vitals-Summary.html'">
-                <h4>Health Vitals Summary</h4>
-                <div class="vitals-row">
-                    <div class="vital-stat">
-                        <i class="fa fa-heartbeat" style="color:#e74c3c"></i>
-                        <span>Heart Rate: <b>72 bpm</b></span>
-                    </div>
-                    <div class="vital-stat">
-                        <i class="fa fa-tint" style="color:#3498db"></i>
-                        <span>BP: <b>120/80</b></span>
-                    </div>
+            <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                <div class="card blue" onclick="location.href='Appointment-Booking.html'">
+                    <i class="fa fa-calendar-check"></i>
+                    <span>Book Appointment</span>
+                </div>
+                <div class="card orange" onclick="location.href='Health-Records.html'">
+                    <i class="fa fa-folder-open"></i>
+                    <span>Health Records</span>
+                </div>
+                <div class="card green" onclick="location.href='Talk-To-Doctor.html'">
+                    <i class="fa fa-comment-medical"></i>
+                    <span>Talk to Doctor</span>
+                </div>
+                <div class="card purple" onclick="location.href='My-Journey.html'">
+                    <i class="fa fa-walking"></i>
+                    <span>MoveOn Journey</span>
                 </div>
             </div>
 
-            <div class="journey-banner">
-                <h4>Move On Stronger</h4>
-                <p>Recovery Status: <b>65% Complete</b></p>
-                <button class="journey-btn" onclick="location.href='My-Journey.html'">View Progress</button>
+            <div class="vitals-widget" onclick="location.href='Vitals-Summary.html'" style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                    <h4 style="margin: 0; font-size: 15px;">Health Vitals Summary</h4>
+                    <i class="fa fa-chevron-right" style="color: #ccc; font-size: 12px;"></i>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 14px; color: #555;"><i class="fa fa-heart" style="color: #e74c3c; margin-right: 5px;"></i> Heart Rate: <b>72 bpm</b></span>
+                    <span style="font-size: 14px; color: #555;"><i class="fa fa-tint" style="color: #3498db; margin-right: 5px;"></i> BP: <b>120/80</b></span>
+                </div>
             </div>
 
-            <div class="menu-card" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 15px;" onclick="location.href='Support.html'">
-                <i class="fa fa-headset" style="color:#f1c40f; margin:0;"></i>
-                <span>Need Support? Contact Clinic</span>
+            <div class="promo-banner" style="background: linear-gradient(135deg, var(--primary-teal), #1a237e); color: white; padding: 18px; border-radius: 15px; margin-bottom: 20px;">
+                <h4 style="margin-bottom: 5px;">Move On Stronger</h4>
+                <p style="font-size: 12px; opacity: 0.9;">Your recovery is 65% complete. View your tasks.</p>
+            </div>
+            
+            <div class="card" style="width: 100%; padding: 15px; text-align: center; border: 1px solid #ddd;" onclick="location.href='Support.html'">
+                <span style="color: #666;"><i class="fa fa-headset"></i> Need Help? Contact Support</span>
             </div>
         </div>
 
-        <nav class="navbar">
-            <a onclick="location.href='index.html'" class="nav-item active"><i class="fa fa-home"></i></a>
-            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
-            <a onclick="location.href='Notifications.html'" class="nav-item"><i class="fa fa-bell"></i></a>
-            <a onclick="location.href='Profile-Settings.html'" class="nav-item"><i class="fa fa-user-cog"></i></a>
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="location.href='index.html'"><i class="fa fa-home"></i></div>
+            <div class="nav-item" onclick="location.href='Appointment-Booking.html'"><i class="fa fa-calendar-alt"></i></div>
+            <div class="nav-item" onclick="location.href='Notifications.html'"><i class="fa fa-bell"></i></div>
+            <div class="nav-item" onclick="location.href='Profile-Settings.html'"><i class="fa fa-user-cog"></i></div>
         </nav>
     </div>
 
     <script>
-        // Check Session & Name Display
+        // Check if user is logged in
         window.onload = function() {
-            // Get user from Login page session
-            const storedUser = localStorage.getItem("patientName");
-
-            // Redirect to Login if unauthorized access
-            if (!storedUser) {
+            const userName = localStorage.getItem("patientName");
+            
+            if (!userName) {
+                // Agar user logged in nahi hai toh Login page par bhejein
                 window.location.href = "Login.html";
             } else {
-                // Update Name on UI
-                document.getElementById("patientName").innerText = storedUser;
+                // Dashboard par patient ka naam dikhayein
+                document.getElementById("patientNameDisplay").innerText = userName;
             }
         };
-
-        // Standard Navigation helper
-        function goTo(url) {
-            window.location.href = url;
-        }
     </script>
 </body>
 </html>
