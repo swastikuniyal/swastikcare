@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing & Invoices - Swastik Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .invoice-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .total-spent {
+            background: linear-gradient(135deg, var(--secondary-blue), #2a3a8a);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .invoice-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #edf2f7;
+            transition: background 0.2s;
+        }
+
+        .invoice-item:last-child { border-bottom: none; }
+
+        .invoice-info h5 { margin: 0; font-size: 14px; color: var(--text-dark); }
+        .invoice-info p { margin: 3px 0 0; font-size: 11px; color: var(--text-gray); }
+
+        .amount-section { text-align: right; }
+        .amount { display: block; font-weight: bold; color: var(--secondary-blue); font-size: 15px; }
+        
+        .status-paid {
+            font-size: 10px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .download-btn {
+            background: none;
+            border: none;
+            color: var(--primary-teal);
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <div class="content">
+            <div class="header" style="justify-content: flex-start; gap: 15px; margin-bottom: 10px;">
+                <i class="fa fa-arrow-left" onclick="location.href='index.html'" style="cursor: pointer;"></i>
+                <h3 style="margin: 0;">Invoices & Billing</h3>
+            </div>
+
+            <div class="total-spent">
+                <p style="font-size: 12px; opacity: 0.8; margin-bottom: 5px;">Total Medical Expenses</p>
+                <h2 style="font-size: 28px;">₹ 4,250.00</h2>
+            </div>
+
+            <h4 style="margin-bottom: 15px; color: var(--text-dark);">Recent Transactions</h4>
+            
+            <div class="invoice-card" style="padding: 10px;">
+                <div class="invoice-item">
+                    <div class="invoice-info">
+                        <h5>Consultation Fee</h5>
+                        <p>Dr. Shalih • 14 April, 2026</p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="amount-section">
+                            <span class="amount">₹ 500.00</span>
+                            <span class="status-paid">Paid</span>
+                        </div>
+                        <button class="download-btn" onclick="generatePDF('INV-001')">
+                            <i class="fa fa-file-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="invoice-item">
+                    <div class="invoice-info">
+                        <h5>Physiotherapy Session</h5>
+                        <p>Clinic Visit • 10 April, 2026</p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="amount-section">
+                            <span class="amount">₹ 1,200.00</span>
+                            <span class="status-paid">Paid</span>
+                        </div>
+                        <button class="download-btn" onclick="generatePDF('INV-002')">
+                            <i class="fa fa-file-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="invoice-item">
+                    <div class="invoice-info">
+                        <h5>Lab Tests (Blood Profile)</h5>
+                        <p>Pathology Lab • 12 March, 2026</p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="amount-section">
+                            <span class="amount">₹ 2,550.00</span>
+                            <span class="status-paid">Paid</span>
+                        </div>
+                        <button class="download-btn" onclick="generatePDF('INV-003')">
+                            <i class="fa fa-file-download"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 11px; color: #aaa;">
+                Powered by Pandey Traders Billing System
+            </p>
+        </div>
+
+        <nav class="navbar">
+            <a onclick="location.href='index.html'" class="nav-item"><i class="fa fa-home"></i></a>
+            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
+            <a onclick="location.href='Notifications.html'" class="nav-item"><i class="fa fa-bell"></i></a>
+            <a onclick="location.href='Profile-Settings.html'" class="nav-item"><i class="fa fa-user-cog"></i></a>
+        </nav>
+    </div>
+
+    <script>
+        function generatePDF(invNum) {
+            alert("Generating Digital Invoice: " + invNum + "\nDownload starting soon...");
+        }
+    </script>
+</body>
+</html>
