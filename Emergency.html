@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency SOS - Swastik Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sos-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .sos-button {
+            width: 180px;
+            height: 180px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .sos-button i { font-size: 50px; margin-bottom: 10px; }
+        .sos-button span { font-weight: bold; font-size: 20px; letter-spacing: 1px; }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 30px rgba(231, 76, 60, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        .emergency-contact-card {
+            background: white;
+            width: 100%;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .contact-item:last-child { border-bottom: none; }
+
+        .call-icon {
+            width: 35px;
+            height: 35px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <div class="content">
+            <div class="header" style="justify-content: flex-start; gap: 15px; margin-bottom: 10px;">
+                <i class="fa fa-arrow-left" onclick="location.href='index.html'" style="cursor: pointer;"></i>
+                <h3 style="margin: 0;">Emergency SOS</h3>
+            </div>
+
+            <div class="sos-container">
+                <div class="sos-button" onclick="triggerSOS()">
+                    <i class="fa fa-phone-alt"></i>
+                    <span>SOS</span>
+                </div>
+                <h4 style="color: #e74c3c;">Emergency Help Needed?</h4>
+                <p style="font-size: 13px; color: var(--text-gray); margin-top: 10px;">
+                    Pressing the SOS button will immediately notify our medical team and share your current location.
+                </p>
+
+                <div class="emergency-contact-card">
+                    <h5 style="text-align: left; margin-bottom: 15px; color: var(--secondary-blue);">Quick Contacts</h5>
+                    
+                    <div class="contact-item">
+                        <div style="text-align: left;">
+                            <strong style="font-size: 14px;">Clinic Ambulance</strong>
+                            <p style="margin:0; font-size: 12px; color: #888;">+91 99999 88888</p>
+                        </div>
+                        <a href="tel:+919999988888" class="call-icon"><i class="fa fa-phone"></i></a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div style="text-align: left;">
+                            <strong style="font-size: 14px;">Emergency Front Desk</strong>
+                            <p style="margin:0; font-size: 12px; color: #888;">011-2345678</p>
+                        </div>
+                        <a href="tel:0112345678" class="call-icon"><i class="fa fa-phone"></i></a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div style="text-align: left;">
+                            <strong style="font-size: 14px;">Personal Guardian (Jayant)</strong>
+                            <p style="margin:0; font-size: 12px; color: #888;">+91 98765 43210</p>
+                        </div>
+                        <a href="tel:+919876543210" class="call-icon" style="background: #e3f2fd; color: #1565c0;"><i class="fa fa-user-shield"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <a onclick="location.href='index.html'" class="nav-item"><i class="fa fa-home"></i></a>
+            <a onclick="location.href='Appointment-Booking.html'" class="nav-item"><i class="fa fa-calendar-plus"></i></a>
+            <a onclick="location.href='Notifications.html'" class="nav-item"><i class="fa fa-bell"></i></a>
+            <a onclick="location.href='Profile-Settings.html'" class="nav-item"><i class="fa fa-user-cog"></i></a>
+        </nav>
+    </div>
+
+    <script>
+        function triggerSOS() {
+            const confirmSOS = confirm("Are you sure you want to trigger an Emergency Alert?");
+            if (confirmSOS) {
+                alert("🚨 SOS Triggered!\nLocation sent to Clinic and Guardian.\nAmbulance is being dispatched.");
+            }
+        }
+    </script>
+</body>
+</html>
